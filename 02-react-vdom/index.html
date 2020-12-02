@@ -7,8 +7,33 @@
     <title>React VDOM</title>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
+    <script>
+        var counter = 0;
+        function onBtnRenderClick(){
+            
+            //comment / uncomment the following line
+            ++counter;
+
+            //Actual DOM
+            document.getElementById('spanCounter').innerText = counter;
+
+            //Virtual DOM
+            var header = React.createElement('h1', { 'id': 'header-1' }, 'Welcome to React.js! - ' + counter);
+            ReactDOM.render(header, document.getElementById('root'))
+        }
+        function onDocumentLoad() {
+            var btnRender = document.getElementById('btnRender');
+            btnRender.addEventListener('click', onBtnRenderClick);
+        }
+        window.addEventListener('load', onDocumentLoad);
+    </script>
 </head>
 <body>
+    <input type="button" value="Render" id="btnRender">
+    <div>
+        <label>Counter : </label>
+        <span id="spanCounter"></span>
+    </div>
     <div id="root"></div>
 </body>
 </html>
