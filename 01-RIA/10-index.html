@@ -37,13 +37,7 @@
                 salary : 0
             };
 
-            var _callbacks = {
-                basic : [],
-                hra : [],
-                da : [],
-                tax : [],
-                salary : []
-            };
+            var _callbacks = [];
 
             this.get = function(attrName){
                 return _data[attrName];
@@ -52,15 +46,14 @@
             this.set = function(attrName, value){
                 if (_data[attrName] === value) return;
                 _data[attrName] = value;
-                var callbacks = _callbacks[attrName];
-                callbacks.forEach(function(callback){
+                _callbacks.forEach(function(callback){
                     if (typeof callback === "function")
                         callback();
                 });
             };
 
-            this.subscribe = function(attrName, callback){
-                _callbacks[attrName].push(callback);
+            this.subscribe = function(callback){
+                _callbacks.push(callback);
             };
         }
         //behavior
@@ -144,15 +137,18 @@
 
             $root.on('click', '#btnCalculate', function () {
                 model.calculate();
-            });
-
-            //Reacting to model changes
-            model.subscribe(this.render);
+            });            
         }
 
         $(function(){
-            //window['model'] = new SalaryCalculatorModel();
-            
+            window['model'] = new SalaryCalculatorModel();
+            var v1 = new SalaryCalculator(model);
+            v1.render().appendTo(document.body);
+
+            function renderCalculator(){
+                v1.render();
+            }
+            model.subscribe(renderCalculator);
             /* 
             var v1 = new SalaryCalculator(model)
             var v2 = new SalaryCalculator(model)
