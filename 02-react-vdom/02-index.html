@@ -12,7 +12,7 @@
         function onBtnRenderClick(){
             
             //comment / uncomment the following line
-            //++counter;
+            ++counter;
 
             //Actual DOM
             //document.getElementById('spanCounter').innerText = counter;
@@ -21,6 +21,10 @@
             var appEle = React.createElement('div', null, 
                 React.createElement('h1', null, 'React.js!'), 
                 React.createElement('hr'),
+                React.createElement('div', null, 
+                    React.createElement('label', null, 'Counter : '),
+                    React.createElement('span', null, counter)
+                ),
                 React.createElement('section', null, 
                     React.createElement('h3', null, 'Introduction'), 
                     React.createElement('p', null, 'Sint adipisicing sunt esse dolore qui consequat adipisicing officia eu fugiat deserunt. Dolor ullamco consequat ipsum amet dolore veniam magna qui minim adipisicing aliqua irure aliquip et. Ad duis do nostrud excepteur. Exercitation cillum in consectetur aliqua pariatur mollit quis commodo aliquip adipisicing ullamco.'),
