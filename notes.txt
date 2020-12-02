@@ -2,3 +2,8 @@ Day-1
 =====
 
 Rich Internet Applications (RIA)
+
+View Synchronization strategies
+
+1. Increment
+    
