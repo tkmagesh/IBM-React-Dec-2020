@@ -30,10 +30,17 @@
             };
             onAddClick = () => {
                 const newProductNames = [ ...this.state.productNames, this.state.newProductName ];
-                this.setState({ productNames: newProductNames });
+                this.setState({ productNames: newProductNames,  newProductName: '' });
+            }
+            onRemoveClick = (productToRemove) => {
+                const { productNames } = this.state;
+                const updatedProductNames = productNames.filter(product => product !== productToRemove);
+                this.setState({ 
+                    productNames : updatedProductNames
+                });
             }
             render(){
-                const { productNames } = this.state;
+                const { productNames, newProductName } = this.state;
                 /* 
                 const productItems = [];
                 for(let index=0, count = productNames.length; index < count; index++){
@@ -47,7 +54,7 @@
                         <div>
                             {productName}
                         </div>
-                        <input type="button" value="Remove" />
+                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(productName)} />
                     </li>
                 ));
                 return(
@@ -55,11 +62,13 @@
                         <h3>Products</h3>
                         <div>
                             <span>Products Count : </span>
-                            <span> # </span>
+                            <span> {productNames.length} </span>
                         </div>
                         <hr/>
                         <label>Product Name :</label>
-                        <input type="text" onChange={ evt => this.setState({ newProductName: evt.target.value })} />
+                        <input type="text" 
+                            value={newProductName} 
+                            onChange={ evt => this.setState({ newProductName: evt.target.value })} />
                         <input type="button" value="Add" onClick={ this.onAddClick} />
                         <ol>
                             {productItems}
