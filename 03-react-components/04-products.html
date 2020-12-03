@@ -5,9 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Products</title>
+    <style>
+        ol{ 
+            list-style: none;
+        }
+        li{ 
+            margin-bottom: 10px;
+        }
+    </style>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
+    <!-- 
+        Assignment-2
+        1. Display the products count
+        2. Remove the product on click of the 'Remove' button
+        3. Clear the text box after adding a new product
+     -->
     <script type="text/babel">
         class Products extends React.Component{
             state = { 
@@ -28,10 +42,21 @@
                     productItems.push(productItem);
                 } 
                 */
-                const productItems = productNames.map((productName, index) => (<li key={index}>{productName}</li>));
+                const productItems = productNames.map((productName, index) => (
+                    <li key={index}>
+                        <div>
+                            {productName}
+                        </div>
+                        <input type="button" value="Remove" />
+                    </li>
+                ));
                 return(
                     <div>
                         <h3>Products</h3>
+                        <div>
+                            <span>Products Count : </span>
+                            <span> # </span>
+                        </div>
                         <hr/>
                         <label>Product Name :</label>
                         <input type="text" onChange={ evt => this.setState({ newProductName: evt.target.value })} />
