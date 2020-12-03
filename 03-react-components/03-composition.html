@@ -82,18 +82,18 @@
 
                 return(
                      <section>
-                        <div className="field">
-                            <label htmlFor="">Basic :</label>
-                            <input type="number" onChange={ e => model.set('basic', parseInt(e.target.value)) }  />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">HRA :</label>
-                            <input type="number" onChange={ e => model.set('hra', parseInt(e.target.value)) }  />
-                        </div>
-                        <div className="field">
-                            <label htmlFor="">DA :</label>
-                            <input type="number" onChange={ e => model.set('da', parseInt(e.target.value)) }  />
-                        </div>
+                        <SalaryCalculatorInput 
+                            labelText="Basic :" 
+                            onValueChange={ value => model.set('basic', value) }
+                        />
+                        <SalaryCalculatorInput 
+                            labelText="HRA :" 
+                            onValueChange={ value => model.set('hra', value) }
+                        />
+                        <SalaryCalculatorInput 
+                            labelText="DA :" 
+                            onValueChange={ value => model.set('da', value) }
+                        />
                         <div className="field">
                             <label htmlFor="">Tax :</label>
                             <input type="range" onChange={ e => model.set('tax', parseInt(e.target.value)) }  min="0" max="30"  />
@@ -103,6 +103,18 @@
                         </div>
                         <SalaryCalculatorResult data={data}/>
                     </section>
+                )
+            }
+        }
+
+        class SalaryCalculatorInput extends React.Component{
+            render(){
+                const { labelText, onValueChange } = this.props;
+                return(
+                    <div className="field">
+                        <label htmlFor="">{labelText}</label>
+                        <input type="number" onChange={ e => onValueChange(e.target.value) }  />
+                    </div>
                 )
             }
         }
