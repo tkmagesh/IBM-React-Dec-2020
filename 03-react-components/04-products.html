@@ -41,7 +41,12 @@
                     this.displayMessage('Duplicate product found');
                 } else {
                     const newProductNames = [ ...this.state.productNames, this.state.newProductName ];
-                    this.setState({ productNames: newProductNames,  newProductName: '' });
+                    this.setState({ 
+                        productNames: newProductNames,  
+                        newProductName: '' 
+                    }, () => {
+                        this.props.onListChange(this.state.productNames)
+                    });
                 }
             }
             onRemoveClick = (productToRemove) => {
@@ -49,6 +54,8 @@
                 const updatedProductNames = productNames.filter(product => product !== productToRemove);
                 this.setState({ 
                     productNames : updatedProductNames
+                }, () => {
+                    this.props.onListChange(this.state.productNames)
                 });
             }
             render(){
@@ -72,10 +79,6 @@
                 return(
                     <div>
                         <h3>Products</h3>
-                        <div>
-                            <span>Products Count : </span>
-                            <span> {productNames.length} </span>
-                        </div>
                         <hr/>
                         <label>Product Name :</label>
                         <input type="text" 
@@ -92,7 +95,38 @@
             }
         }
 
-        ReactDOM.render(<Products/>, document.getElementById('root'));
+        class ProductsCount extends React.Component{
+            render(){
+                return(
+                    <div>
+                        <span>Products Count : </span>
+                        <span> {this.props.data} </span>
+                    </div>
+                )
+            }
+        }
+
+        class App extends React.Component{
+            state = {
+                productNames  : []
+            };
+
+            onProductsChange = (productNames) => {
+                this.setState({productNames : productNames });
+            }
+            render(){
+                return (
+                    <div>
+                        <ProductsCount data={this.state.productNames.length} />
+                        <Products onListChange={this.onProductsChange}/>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <App/>
+            , document.getElementById('root'));
     </script>
 </head>
 <body>

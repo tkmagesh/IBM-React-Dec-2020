@@ -45,4 +45,14 @@ HTML & JSX
 
 
 Folder : Assignment-1
-    
+
+State
+    UI State
+        Any data that supports the presenation logic of the application
+        Highly UNLIKELY that this data might be needed in other parts of the application
+        Feel free to keep this data in the component state
+
+    Application State
+        Any data that supports the core application logic
+        Highly LIKELY that this data might be needed in other parts of the application
+        DO NOT keep this data in the component state. Where?
