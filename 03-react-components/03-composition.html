@@ -147,7 +147,7 @@
                
                 //this.setState(func) syntax
                 this.setState( (state, props) => ({ 
-                    value : parseInt(e.target.value)
+                    value : parseInt(e.target.value) || ''
                 }), () => {
                     this.props.onValueChange(this.state.value);
                 });
