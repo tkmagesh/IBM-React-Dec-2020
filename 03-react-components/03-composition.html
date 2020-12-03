@@ -85,6 +85,7 @@
                         <SalaryCalculatorInput 
                             labelText="Basic :" 
                             onValueChange={ value => model.set('basic', value) }
+                            
                         />
                         <SalaryCalculatorInput 
                             labelText="HRA :" 
@@ -109,6 +110,7 @@
             }
         }
 
+        /* 
         class SalaryCalculatorInput extends React.Component{
             render(){
                 const { labelText, onValueChange, type = 'number', ...restProps } = this.props;
@@ -119,6 +121,34 @@
                             type={type} 
                             onChange={ e => onValueChange(parseInt(e.target.value)) }  
                             {...restProps}
+                            defaultValue="0"
+                        />
+                    </div>
+                )
+            }
+        } 
+        */
+
+        class SalaryCalculatorInput extends React.Component{
+            state = { value : 0 };
+
+            onTxtChange = (e) => {
+                this.setState({ 
+                    value : parseInt(e.target.value)
+                }, () => {
+                    this.props.onValueChange(this.state.value);
+                });
+            }
+            render(){
+                const { labelText, onValueChange, type = 'number', ...restProps } = this.props;
+                return(
+                    <div className="field">
+                        <label htmlFor="">{labelText}</label>
+                        <input 
+                            type={type} 
+                            onChange={ e => onValueChange(parseInt(e.target.value)) }
+                            {...restProps}
+                            value={this.state.value}
                         />
                     </div>
                 )
