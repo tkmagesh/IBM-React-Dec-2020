@@ -110,6 +110,7 @@
             }
         }
 
+        //using defaultValue
         /* 
         class SalaryCalculatorInput extends React.Component{
             render(){
@@ -129,13 +130,25 @@
         } 
         */
 
+        //using state
         class SalaryCalculatorInput extends React.Component{
             state = { value : 0 };
 
             onTxtChange = (e) => {
+                
+                //this.setState(object) syntax
+                /* 
                 this.setState({ 
                     value : parseInt(e.target.value)
                 }, () => {
+                    this.props.onValueChange(this.state.value);
+                }); 
+                */ 
+               
+                //this.setState(func) syntax
+                this.setState( (state, props) => ({ 
+                    value : parseInt(e.target.value)
+                }), () => {
                     this.props.onValueChange(this.state.value);
                 });
             }
@@ -146,7 +159,7 @@
                         <label htmlFor="">{labelText}</label>
                         <input 
                             type={type} 
-                            onChange={ e => onValueChange(parseInt(e.target.value)) }
+                            onChange={ this.onTxtChange }
                             {...restProps}
                             value={this.state.value}
                         />
