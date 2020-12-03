@@ -26,3 +26,19 @@ http://es6-features.org
 Array methods : filter, map, reduce, forEach
 
 
+React
+    Component = encapsulation of State + Presentation + UI Behavior 
+    Application = composition of components
+
+
+HTML & JSX
+
+    In HTML
+        - open tags without close tags are allowed
+        - 'for' attribute is allowed
+        - 'class' attribute is allowed
+
+    In JSX
+        - every open tag must have a close tag
+        - use 'htmlFor' in place of 'for' attribute
+        - use 'className' in place of 'class' attribute
