@@ -26,11 +26,23 @@
         class Products extends React.Component{
             state = { 
                 productNames : [],
-                newProductName : ''
+                newProductName : '',
+                errorMsg : ''
             };
+            displayMessage(msg){
+                this.setState({ errorMsg : msg });
+                setTimeout(() => {
+                    this.setState({ errorMsg : ''});
+                }, 4000);
+            }
             onAddClick = () => {
-                const newProductNames = [ ...this.state.productNames, this.state.newProductName ];
-                this.setState({ productNames: newProductNames,  newProductName: '' });
+                const { productNames, newProductName } = this.state;
+                if (productNames.find(productName => productName === newProductName)){
+                    this.displayMessage('Duplicate product found');
+                } else {
+                    const newProductNames = [ ...this.state.productNames, this.state.newProductName ];
+                    this.setState({ productNames: newProductNames,  newProductName: '' });
+                }
             }
             onRemoveClick = (productToRemove) => {
                 const { productNames } = this.state;
@@ -40,7 +52,7 @@
                 });
             }
             render(){
-                const { productNames, newProductName } = this.state;
+                const { productNames, newProductName, errorMsg } = this.state;
                 /* 
                 const productItems = [];
                 for(let index=0, count = productNames.length; index < count; index++){
@@ -54,7 +66,7 @@
                         <div>
                             {productName}
                         </div>
-                        <input type="button" value="Remove" onClick={ () => this.onRemoveClick(productName)} />
+                        <input type="button" value="Remove" onClick={ this.onRemoveClick.bind(this, productName) } />
                     </li>
                 ));
                 return(
@@ -73,6 +85,8 @@
                         <ol>
                             {productItems}
                         </ol>
+                        <hr/>
+                        <div>{errorMsg}</div>
                     </div>
                 )
             }
