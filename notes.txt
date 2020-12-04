@@ -56,3 +56,14 @@ State
         Any data that supports the core application logic
         Highly LIKELY that this data might be needed in other parts of the application
         DO NOT keep this data in the component state. Where?
+
+React Hooks
+    Functions to handle state, life cycle events etc in a functional component
+    Hook function name must start with 'use'
+    Builtin hooks:
+        useState
+        useEffect
+        useReducer
+        useRef
+        useCallback
+        useMemo
