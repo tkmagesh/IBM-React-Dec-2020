@@ -41,8 +41,8 @@
     <!-- 
         BugTracker use cases
         ================================================
-        1. Add new bugs
-        2. List the added bugs
+        (done) 1. Add new bugs
+        (done) 2. List the added bugs
         3. Toggle the 'closed' status of any bug
         4. Remove any bug
         5. Remove closed bugs
@@ -58,25 +58,40 @@
     <script src="redux.js"></script>
     <script type="text/babel">
 
-        let initialState = [
-            {
-                id : 1,
-                name : 'Server communication failure',
-                isClosed : false,
-                createdAt : new Date()
-            },
-            { 
-                id : 2,
-                name : 'Data integrity checks failed',
-                isClosed : true,
-                createdAt : new Date()
-            }
-        ];
+        let initialState = [];
+
         function bugsReducer(currentState = initialState, action){
+            if (action.type === 'BUG_ADD_NEW'){
+                const newState = [ ...currentState, action.payload ];
+                return newState;
+            }
             return currentState;
         }
 
+        let currentBugId = 0;
+
+        const bugActionCreators = { 
+            addNew(bugName){
+                const newBug = {
+                    id : ++currentBugId,
+                    name : bugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                };
+                const action = { type : 'BUG_ADD_NEW', payload : newBug }
+                return action;
+            }
+        }
+
         class BugTracker extends React.Component {
+            state = {
+                newBugName : ''
+            };
+
+            onBtnAddNewClick = () => {
+                this.props.addNew(this.state.newBugName);
+            };
+
             render(){
                 const { bugs } = this.props;
                 return(
@@ -99,8 +114,9 @@
                         </section>
                         <section className="edit">
                             <label htmlFor="">Bug Name :</label>
-                            <input type="text" name="" id="" />
-                            <input type="button" value="Add New" />
+                            <input type="text" 
+                                onChange={evt => this.setState({ newBugName : evt.target.value})} />
+                            <input type="button" value="Add New" onClick={this.onBtnAddNewClick} />
                         </section>
                         <section className="list">
                             <ol>
@@ -121,12 +137,20 @@
             }
         }
 
+        
         const store = Redux.createStore(bugsReducer);
 
-        const bugs = store.getState();
-        ReactDOM.render(
-            <BugTracker bugs={bugs}/>
-        , document.getElementById('root'));
+        const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
+
+        function renderApp(){
+            const bugs = store.getState();
+            ReactDOM.render(
+                <BugTracker bugs={bugs} {...bugActionDispatchers} />
+            , document.getElementById('root'));
+        }
+        renderApp();
+        store.subscribe(renderApp);
+
     </script>
 </head>
 <body>
