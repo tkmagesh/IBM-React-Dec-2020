@@ -14,6 +14,7 @@
         02. remove the 'store' direct dependency in the component
         03. introducing 'actionCreators'
         04. introducing 'actionDispatchers'
+        05. simplify passing the actionDispatchers to the component
      -->
     <script type="text/babel">
         function spinnerReducer(currentState = 0 , action){
@@ -29,10 +30,10 @@
         class Spinner extends React.Component {
 
             onDecrementClick = () => {
-                this.props.actionDispatchers.decrement();
+                this.props.decrement();
             };
             onIncrementClick = () => {
-                this.props.actionDispatchers.increment();                
+                this.props.increment();                
             };
             render(){
                 const { value } = this.props;
@@ -78,7 +79,7 @@
         function renderSpinner(){
             const value = store.getState();
             ReactDOM.render(
-                <Spinner value={value} actionDispatchers={actionDispatchers}/>
+                <Spinner value={value} decrement={actionDispatchers.decrement} increment={actionDispatchers.increment}/>
             , document.getElementById('root'))
         }
         renderSpinner();
