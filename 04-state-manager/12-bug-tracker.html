@@ -57,8 +57,28 @@
     <script src="babel.min.js"></script>
     <script src="redux.js"></script>
     <script type="text/babel">
+
+        let initialState = [
+            {
+                id : 1,
+                name : 'Server communication failure',
+                isClosed : false,
+                createdAt : new Date()
+            },
+            { 
+                id : 2,
+                name : 'Data integrity checks failed',
+                isClosed : true,
+                createdAt : new Date()
+            }
+        ];
+        function bugsReducer(currentState = initialState, action){
+            return currentState;
+        }
+
         class BugTracker extends React.Component {
             render(){
+                const { bugs } = this.props;
                 return(
                     <React.Fragment>
                         <h1>Bug Tracker</h1>
@@ -66,7 +86,7 @@
                         <section className="stats">
                             <span className="closed">1</span>
                             <span> / </span>
-                            <span>2</span>
+                            <span>{bugs.length}</span>
                         </section>
                         <section className="sort">
                             <label htmlFor="">Order By :</label>
@@ -84,16 +104,15 @@
                         </section>
                         <section className="list">
                             <ol>
-                                <li>
-                                    <span className="bugname">[This is bug - 1]</span>
-                                    <div className="datetime">[CreatedAt]</div>
-                                    <input type="button" value="Remove" />
-                                </li>
-                                <li>
-                                    <span className="bugname closed">[This is bug - 2]</span>
-                                    <div className="datetime">[CreatedAt]</div>
-                                    <input type="button" value="Remove" />
-                                </li>
+                                { bugs.map( bug => (
+                                    <li key={bug.id}>
+                                        <span className={"bugname " + (bug.isClosed ? 'closed' : '')}>
+                                            {bug.name}
+                                        </span>
+                                        <div className="datetime">{bug.createdAt.toString()}</div>
+                                        <input type="button" value="Remove" />
+                                    </li>
+                                ))}
                             </ol>
                             <input type="button" value="Remove Closed" />
                         </section>
@@ -102,7 +121,12 @@
             }
         }
 
-        ReactDOM.render(<BugTracker/>, document.getElementById('root'))
+        const store = Redux.createStore(bugsReducer);
+
+        const bugs = store.getState();
+        ReactDOM.render(
+            <BugTracker bugs={bugs}/>
+        , document.getElementById('root'));
     </script>
 </head>
 <body>
