@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
         01. initial implementation
         02. remove the 'store' direct dependency in the component
         03. introducing 'actionCreators'
+        04. introducing 'actionDispatchers'
      -->
     <script type="text/babel">
         function spinnerReducer(currentState = 0 , action){
@@ -28,12 +29,10 @@
         class Spinner extends React.Component {
 
             onDecrementClick = () => {
-                const action = this.props.actionCreators.decrement();
-                this.props.dispatch(action);
+                this.props.actionDispatchers.decrement();
             };
             onIncrementClick = () => {
-                const action = this.props.actionCreators.increment();
-                this.props.dispatch(action);
+                this.props.actionDispatchers.increment();                
             };
             render(){
                 const { value } = this.props;
@@ -60,10 +59,26 @@
             }
         }
 
+        function bindActionCreators(actionCreators, dispatch){
+            const actionDispatchers = {
+                decrement(){
+                    const action = actionCreators.decrement();
+                    dispatch(action);
+                }, 
+                increment(){
+                    const action = actionCreators.increment();
+                    dispatch(action);
+                }
+            };
+            return actionDispatchers;
+        }
+
+        const actionDispatchers = bindActionCreators(spinnerActionCreators, store.dispatch);
+
         function renderSpinner(){
             const value = store.getState();
             ReactDOM.render(
-                <Spinner value={value} dispatch={store.dispatch} actionCreators={spinnerActionCreators}/>
+                <Spinner value={value} dispatch={store.dispatch} actionDispatchers={actionDispatchers}/>
             , document.getElementById('root'))
         }
         renderSpinner();
