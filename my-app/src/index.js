@@ -5,20 +5,33 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { bindActionCreators } from 'redux';
+
 import * as bugActionCreators from './bugTracker/actions';
+import * as projectActionCreators from './projects/actions';
+
 import store from './store';
+
 import BugTracker from './bugTracker';
+import Projects from './projects';
 
 const bugActionDispatchers = bindActionCreators(
   bugActionCreators,
   store.dispatch
 );
+const projectActionDispatchers = bindActionCreators(
+  projectActionCreators,
+  store.dispatch
+);
+
 
 function renderApp() {
-  const bugs = store.getState();
+  //const bugs = store.getState();
+  const projects = store.getState();
+
   ReactDOM.render(
     <React.StrictMode>
-      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+      {/* <BugTracker bugs={bugs} {...bugActionDispatchers} /> */}
+      <Projects projects={projects} {...projectActionDispatchers} />
     </React.StrictMode>,
     document.getElementById("root")
   );
