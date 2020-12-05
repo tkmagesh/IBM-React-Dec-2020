@@ -14,6 +14,7 @@ import store from './store';
 import BugTracker from './bugTracker';
 import Projects from './projects';
 
+//Creating actionDispatchers
 const bugActionDispatchers = bindActionCreators(
   bugActionCreators,
   store.dispatch
@@ -25,6 +26,7 @@ const projectActionDispatchers = bindActionCreators(
 
 
 function renderApp() {
+  //extracting data
   const storeState = store.getState();
   const bugs = storeState.bugState;
   const projects = storeState.projectState;

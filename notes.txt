@@ -129,3 +129,8 @@ App folder structure
         - index.js
         
     - index.js
+
+
+yarn add react-redux
+    connect
+    Provider
