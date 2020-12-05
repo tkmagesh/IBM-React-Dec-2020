@@ -4,13 +4,29 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { bindActionCreators } from 'redux';
+import * as bugActionCreators from './bugTracker/actions';
+import store from './store';
+import BugTracker from './bugTracker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const bugActionDispatchers = bindActionCreators(
+  bugActionCreators,
+  store.dispatch
 );
+
+function renderApp() {
+  const bugs = store.getState();
+  ReactDOM.render(
+    <React.StrictMode>
+      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+    </React.StrictMode>,
+    document.getElementById("root")
+  );
+}
+renderApp();
+store.subscribe(renderApp);
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
