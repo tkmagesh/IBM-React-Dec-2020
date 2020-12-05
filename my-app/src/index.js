@@ -3,45 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import { bindActionCreators } from 'redux';
-
-import * as bugActionCreators from './bugTracker/actions';
-import * as projectActionCreators from './projects/actions';
-
+import { Provider } from 'react-redux';
 import store from './store';
 
 import BugTracker from './bugTracker';
 import Projects from './projects';
 
-//Creating actionDispatchers
-const bugActionDispatchers = bindActionCreators(
-  bugActionCreators,
-  store.dispatch
-);
-const projectActionDispatchers = bindActionCreators(
-  projectActionCreators,
-  store.dispatch
-);
-
-
-function renderApp() {
-  //extracting data
-  const storeState = store.getState();
-  const bugs = storeState.bugState;
-  const projects = storeState.projectState;
-
   ReactDOM.render(
     <React.StrictMode>
-      <h1>My App</h1>
-      <Projects projects={projects} {...projectActionDispatchers} />
-      <BugTracker bugs={bugs} {...bugActionDispatchers} />
+      <Provider store={store}>
+        <h1>My App</h1>
+        <Projects/>
+        <BugTracker/>
+      </Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
-}
-renderApp();
-store.subscribe(renderApp);
 
 
 
