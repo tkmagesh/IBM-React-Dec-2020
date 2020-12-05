@@ -98,3 +98,34 @@ ES6 Modules
     - any entity defined in a JS file is considered private by default
     - public entities need to explicitly exported
     - entities from other files have to explicitly imported for usage
+
+App folder structure
+/src
+    /bugTracker
+        /actions
+            - addNew.js
+            - toggle.js
+            -
+            -
+            - index.js
+        /views
+            - bugStats.js
+            - bugEdit.js
+            - 
+            -
+        - index.js
+            (BugTracker component)
+
+    /proejcts
+        /acitons
+        /views
+        - index.js
+
+    /reducers
+        - bugsReducer.js
+        - projectsReducer.js
+
+    /store
+        - index.js
+        
+    - index.js
