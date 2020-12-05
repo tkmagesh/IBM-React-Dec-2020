@@ -139,6 +139,10 @@
 
         const BugEdit = ({ addNew }) => {
             const [ newBugName, setNewBugName ] = React.useState('');
+            /* const onTxtBugNameChange = (evt) => {
+                setNewBugName(evt.target.value);
+                console.log(newBugName);
+            } */
             return (
                 <section className="edit">
                     <label htmlFor="">Bug Name :</label>

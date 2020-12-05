@@ -67,3 +67,34 @@ React Hooks
         useRef
         useCallback
         useMemo
+
+create-react-app
+    Node.js module
+
+Node package managers
+    npm
+    yarn
+
+To create a react application using create-react-app
+
+(Download, install & Use it)
+npm install create-react-app -g (OR) yarn add global create-react-app
+create-react-app <app-name>
+
+(OR)
+
+npx create-react-app <app name>
+
+(OR)
+
+yarn create react-app <app name>
+
+JS Module system
+AMD - Asynchronous Module Definition
+CommonJS
+ES6 Modules
+
+ES6 Modules
+    - any entity defined in a JS file is considered private by default
+    - public entities need to explicitly exported
+    - entities from other files have to explicitly imported for usage
