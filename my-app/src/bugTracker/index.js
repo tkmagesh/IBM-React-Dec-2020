@@ -6,7 +6,7 @@ import BugList from './views/bugList';
 
 const BugTracker = ({ bugs, toggle, remove, removeClosed, addNew }) => (
   <Fragment>
-    <h1>Bug Tracker</h1>
+    <h3>Bug Tracker</h3>
     <hr />
     <BugStats bugs={bugs} />
     <BugSort />

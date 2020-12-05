@@ -5,6 +5,7 @@ const Projects = ({ projects, addNew }) => {
   return (
     <div>
       <h3>Projects</h3>
+      <hr/>
       <label>Project Name : </label>
       <input
         type="text"

@@ -25,13 +25,15 @@ const projectActionDispatchers = bindActionCreators(
 
 
 function renderApp() {
-  //const bugs = store.getState();
-  const projects = store.getState();
+  const storeState = store.getState();
+  const bugs = storeState.bugState;
+  const projects = storeState.projectState;
 
   ReactDOM.render(
     <React.StrictMode>
-      {/* <BugTracker bugs={bugs} {...bugActionDispatchers} /> */}
+      <h1>My App</h1>
       <Projects projects={projects} {...projectActionDispatchers} />
+      <BugTracker bugs={bugs} {...bugActionDispatchers} />
     </React.StrictMode>,
     document.getElementById("root")
   );
