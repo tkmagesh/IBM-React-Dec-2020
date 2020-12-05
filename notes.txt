@@ -134,3 +134,27 @@ App folder structure
 yarn add react-redux
     connect
     Provider
+
+Components configured with 'connect' are called as Container / Smart Components
+    - coz, they interface with redux infrastructure to get the data and dispatch
+The other components are called as Dumb / Presentation Components
+    - These receive the data and action dispatchers from the container components and display them
+
+Best Practice : Fewer container components
+
+Redux Middleware
+    - Middleware is a function where the 'cross cutting' concerns are implemented
+
+
+
+There are ONLY 2 places where the complete store state is accessible in the application
+    - mapStateToProps
+        - Use this to access the store state for presentation purpose
+    - action creators (when using the 'state middleware')
+        - Use this to access the store state for 'manipulation' purposes
+
+json-server
+    a node module that can serve the data from a json file as restful services
+    go to the folder that has the data file (db.json in our case)
+    run the following command
+        npx json-server db.json -p 3030
