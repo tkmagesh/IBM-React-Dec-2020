@@ -1,4 +1,4 @@
-import axios from 'axios';
+//import axios from 'axios';
 
 /* function getLocalBugs(){
     return [
@@ -41,9 +41,18 @@ import axios from 'axios';
 } */
 
 //using promiseMiddleware 
-export async function load(){
+/* export async function load(){
     const response = await axios.get('http://localhost:3030/bugs');
     const bugs = response.data;
+    const action = { type : 'BUG_INIT', payload : bugs } ;
+    return action;
+}  */
+
+//using the promiseMiddleware
+//using the bugApi
+import bugApi from '../services/bugApi';
+export async function load(){
+    const bugs = await bugApi.getAll();
     const action = { type : 'BUG_INIT', payload : bugs } ;
     return action;
 } 

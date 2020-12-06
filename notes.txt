@@ -183,3 +183,13 @@ TS languange constructs
     - access modifiers (public, private, protected)
     - generics
     - decorators
+
+Async Operation
+    Initiated but not waited up on for completion
+
+
+A Promise
+    an object designed to hold the result of an async operation
+        and notify the subscribers when the operation is completed
+
+    every subscription (using the 'then' method) returns a 'new promise'
