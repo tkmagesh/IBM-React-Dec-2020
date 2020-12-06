@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
 
 import store from './store';
-import Home from './home';
-import BugTracker from './bugTracker';
-import Projects from './projects';
-import Timer from './timer';
 
+import Timer from './timer';
+import Login from './login';
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
@@ -19,23 +16,7 @@ import Timer from './timer';
           <h1>My App</h1>
           <Timer />
           <br/>
-          <div>
-            <span> [ <Link to="/">Home</Link> ] </span>
-            <span> [ <Link to="/bugs">Bugs</Link> ] </span>
-            <span> [ <Link to="/projects">Projects</Link> ] </span>
-          </div>
-          <hr/>
-          <Switch>
-            <Route path="/bugs">
-              <BugTracker/>
-            </Route>
-            <Route path="/projects">
-              <Projects/>
-            </Route>
-            <Route path="/">
-              <Home/>
-            </Route>
-          </Switch>
+          <Login/>
         </Router>
       </Provider>
     </React.StrictMode>,

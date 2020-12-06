@@ -1,24 +1,30 @@
-import logo from './logo.svg';
+import { Fragment } from 'react';
 import './App.css';
-
+import Home from './home';
+import BugTracker from './bugTracker';
+import Projects from './projects';
+import { Link, Switch, Route } from 'react-router-dom';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div>
+        <span> [ <Link to="/">Home</Link> ] </span>
+        <span> [ <Link to="/bugs">Bugs</Link> ] </span>
+        <span> [ <Link to="/projects">Projects</Link> ] </span>
+      </div>
+      <hr/>
+      <Switch>
+        <Route path="/bugs">
+          <BugTracker/>
+        </Route>
+        <Route path="/projects">
+          <Projects/>
+        </Route>
+        <Route path="/">
+          <Home/>
+        </Route>
+      </Switch>
+    </Fragment>
   );
 }
 
