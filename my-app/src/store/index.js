@@ -22,18 +22,17 @@ function loggerMiddleware(store){
     }
 }
 
-function stateMiddleware(store){
+function asyncMiddleware({dispatch, getState}){
     return function(next){
         return function(action){
             if (typeof action === 'function'){
-                const actionObj = action(store.getState);
-                return next(actionObj);
+                return action(dispatch, getState);                
             }
             return next(action);
         }
     }
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger, stateMiddleware));
+const store = createStore(rootReducer, applyMiddleware(logger, asyncMiddleware));
 
 export default store;

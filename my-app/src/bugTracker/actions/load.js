@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function getLocalBugs(){
+/* function getLocalBugs(){
     return [
         {
             "id": 1,
@@ -15,10 +15,17 @@ function getLocalBugs(){
             "isClosed": false,
         }
     ];
-}
+} */
 
 export function load(){
-    const bugs = getLocalBugs();
-    const action = { type : 'BUG_INIT', payload : bugs } ;
-    return action;
+    return function(dispatch){  //=> invoked by the asyncMiddleware
+        const p1 = axios.get('http://localhost:3030/bugs');
+        var p2 = p1.then(function(response){
+            return response.data;
+        });
+        p2.then(function(bugs){
+            const action = { type : 'BUG_INIT', payload : bugs } ;
+            dispatch(action);
+        });
+    };
 }
