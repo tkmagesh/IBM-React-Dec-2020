@@ -40,10 +40,10 @@ import axios from 'axios';
     };
 } */
 
-//using promiseMiddleware
+//using promiseMiddleware 
 export async function load(){
     const response = await axios.get('http://localhost:3030/bugs');
     const bugs = response.data;
     const action = { type : 'BUG_INIT', payload : bugs } ;
     return action;
-}
+} 
