@@ -2,7 +2,7 @@ let currentBugId = 0;
 
 export function addNew(bugName) {
   const newBug = {
-    id: ++currentBugId,
+    id: 0, /* server will decide the new id */
     name: bugName,
     isClosed: false,
     createdAt: new Date()
