@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-export default function TimeDisplay(){
+/*
+ import { useState, useEffect } from 'react';
+ export default function TimeDisplay(){
     const [currentDate, setCurrentDate ] = useState(new Date());
 
     useEffect(() => {
@@ -16,10 +17,19 @@ export default function TimeDisplay(){
                 clearInterval(timerId);
             }
         };
-    }, [] /* list of data which when changed we want the outer function to be executed */ )
+    }, [])
 
    
     return(
         <div><strong>{currentDate.toLocaleTimeString()}</strong></div>
+    )
+} */
+
+import useTimer from './useTimer';
+
+export default function TimeDisplay(){
+    const currentDate = useTimer();
+    return(
+        <div><strong><i>{currentDate.toLocaleTimeString()}</i></strong></div>
     )
 }
