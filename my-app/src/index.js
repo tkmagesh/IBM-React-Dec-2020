@@ -6,8 +6,12 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store';
 
+
 import BugTracker from './bugTracker';
 import Projects from './projects';
+
+import axios from 'axios';
+window['axios'] = axios;
 
   ReactDOM.render(
     <React.StrictMode>

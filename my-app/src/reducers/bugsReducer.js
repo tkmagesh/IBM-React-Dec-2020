@@ -24,6 +24,9 @@ function bugsReducer(currentState = initialState, action) {
       );
     return newState;
   }
+  if (action.type === 'BUG_INIT'){
+    return action.payload;
+  }
   return currentState;
 }
 
