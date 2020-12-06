@@ -9,14 +9,16 @@ import store from './store';
 
 import BugTracker from './bugTracker';
 import Projects from './projects';
+import Timer from './timer';
 
-import axios from 'axios';
+/* import axios from 'axios';
 window['axios'] = axios;
-
+ */
   ReactDOM.render(
     <React.StrictMode>
       <Provider store={store}>
         <h1>My App</h1>
+        <Timer />
         <Projects/>
         <BugTracker/>
       </Provider>
