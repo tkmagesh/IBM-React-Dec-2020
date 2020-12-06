@@ -26,7 +26,6 @@
 } */
 
 import useTimer from './useTimer';
-
 export default function TimeDisplay(){
     const currentDate = useTimer();
     return(

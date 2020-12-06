@@ -193,3 +193,17 @@ A Promise
         and notify the subscribers when the operation is completed
 
     every subscription (using the 'then' method) returns a 'new promise'
+
+
+Next.js 
+
+SSR
+
+    /Products
+    /Customers
+    /Orders
+    /Users
+
+Custom Hooks
+Context
+Error Boundaries
