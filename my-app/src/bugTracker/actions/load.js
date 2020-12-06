@@ -17,7 +17,7 @@ import axios from 'axios';
     ];
 } */
 
-export function load(){
+/* export function load(){
     return function(dispatch){  //=> invoked by the asyncMiddleware
         const p1 = axios.get('http://localhost:3030/bugs');
         var p2 = p1.then(function(response){
@@ -28,4 +28,22 @@ export function load(){
             dispatch(action);
         });
     };
+} */
+
+//using async await
+/* export function load(){
+    return async function(dispatch){  //=> invoked by the asyncMiddleware
+        const response = await axios.get('http://localhost:3030/bugs');
+        const bugs = response.data;
+        const action = { type : 'BUG_INIT', payload : bugs } ;
+        dispatch(action);
+    };
+} */
+
+//using promiseMiddleware
+export async function load(){
+    const response = await axios.get('http://localhost:3030/bugs');
+    const bugs = response.data;
+    const action = { type : 'BUG_INIT', payload : bugs } ;
+    return action;
 }

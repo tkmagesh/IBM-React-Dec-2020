@@ -33,6 +33,14 @@ function asyncMiddleware({dispatch, getState}){
     }
 }
 
-const store = createStore(rootReducer, applyMiddleware(logger, asyncMiddleware));
+const promiseMiddleware = ({dispatch, getState}) => next => async action => {
+    if (action instanceof Promise){
+        const actionObj = await action;
+        return dispatch(actionObj);
+    }
+    return next(action);
+}
+
+const store = createStore(rootReducer, applyMiddleware(logger, asyncMiddleware, promiseMiddleware));
 
 export default store;
