@@ -3,10 +3,11 @@ import './App.css';
 import Home from './home';
 import BugTracker from './bugTracker';
 import Projects from './projects';
+import User from './context-demo/User';
 import { Link, Switch, Route } from 'react-router-dom';
 function App() {
   return (
-    <Fragment>
+    <User>
       <div>
         <span> [ <Link to="/">Home</Link> ] </span>
         <span> [ <Link to="/bugs">Bugs</Link> ] </span>
@@ -24,7 +25,7 @@ function App() {
           <Home/>
         </Route>
       </Switch>
-    </Fragment>
+    </User>
   );
 }
 
