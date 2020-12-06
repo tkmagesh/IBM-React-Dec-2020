@@ -1,6 +1,6 @@
 import UserContext from './UserContext';
 
-const User = ({children}) => {
+const User = (props, children) => {
     return (
         <UserContext.Provider value="Magesh">
             {children}
