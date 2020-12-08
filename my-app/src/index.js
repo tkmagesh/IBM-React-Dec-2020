@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Link, Switch, Route } from 'react-router-dom';
+//import { Provider } from 'react-redux';
+import { Provider } from './storeConnector';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import store from './store';
 

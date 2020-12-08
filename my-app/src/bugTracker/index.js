@@ -1,6 +1,7 @@
 import { Fragment, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
+import  { connect }  from '../storeConnector';
 
 import BugStats from './views/bugStats';
 import BugSort from './views/bugSort';
@@ -8,11 +9,12 @@ import BugEdit from './views/bugEdit';
 import BugList from './views/bugList';
 import * as bugActionCreators from "./actions";
 
-const BugTracker = ({ bugs, toggle, remove, removeClosed, addNew, load }) => {
+const BugTracker = (props) => {
+  const { bugs, toggle, remove, removeClosed, addNew, load } = props;
   useEffect(() =>{
     load();
   }, [load]);
-
+  console.log(props);
   return (
     <Fragment>
       <h3>Bug Tracker</h3>

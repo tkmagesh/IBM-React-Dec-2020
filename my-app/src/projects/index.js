@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
+import { connect } from '../storeConnector';
 import * as projectActionCreators from './actions';
 
 const Projects = ({ projects, addNew }) => {

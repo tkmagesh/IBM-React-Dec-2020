@@ -1,11 +1,16 @@
 {
   "bugs": [
     {
-      "id": 2,
+      "id": 1,
       "name": "Server communication failure",
-      "createdAt": "2020-11-26T11:17:31.342Z",
+      "isClosed": true,
+      "createdAt": "2020-12-08T02:08:26.035Z"
+    },
+    {
+      "id": 2,
+      "name": "User actions not recognized",
       "isClosed": false,
-      "project": "Bug Tracker"
+      "createdAt": "2020-12-08T02:11:50.204Z"
     }
   ],
   "projects": [

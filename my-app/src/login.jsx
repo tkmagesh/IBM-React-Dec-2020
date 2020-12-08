@@ -4,7 +4,7 @@ import App from './App';
 const Login = () => {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
-    const [validUser, setValidUser] = useState(false);
+    const [validUser, setValidUser] = useState(true);
     const onLoginClick = () => {
         if (userName === 'user' && password === 'password'){
             setValidUser(true);
